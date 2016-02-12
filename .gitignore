@@ -1,0 +1,150 @@
+<html>
+
+<head>
+
+<title>- Praieiros.NET - </title>
+
+<link href="css/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<meta charset='UTF-8'>
+
+
+
+<script type="text/javascript">// <![CDATA[
+var imageCount = 0;
+var currentImage = 0;
+var images = new Array();
+ 
+ 
+images[0] = 'img/background/bg.jpg';
+images[1] = 'img/background/bg2.jpg';
+images[2] = 'img/background/bg3.jpg';
+images[3] = 'img/background/bg4.jpg';
+images[4] = 'img/background/bg5.jpg';
+
+ 
+var preLoadImages = new Array();
+for (var i = 0; i < images.length; i++)
+{
+   if (images[i] == "")
+      break;
+ 
+   preLoadImages[i] = new Image();
+   preLoadImages[i].src = images[i];
+   imageCount++;
+}
+ 
+function startSlideShow()
+{
+   if (document.body && imageCount > 0)
+   {
+      document.body.style.backgroundImage = "url("+images[currentImage]+")";    
+      document.body.style.backgroundAttachment = "fixed";
+      document.body.style.backgroundRepeat = "repeat";
+      document.body.style.backgroundPosition = "left top";
+ 
+      currentImage = currentImage + 1;
+      if (currentImage > (imageCount-1))
+      { 
+         currentImage = 0;
+      }
+      setTimeout('startSlideShow()', 4000);
+   }
+}
+startSlideShow();
+
+
+
+
+
+function hotel()
+{
+
+
+}
+// ]]></script>
+
+
+
+
+
+<body onLoad='startSlideShow()'>
+
+
+<div id = "logo">
+<img src="img/logo.png">
+</div>
+
+<div id = "pesquisa">
+
+<form name="FormPesquisar"action="PaginaPrincipal.php" method="post">
+
+<font size="3" color="#10006e">
+<b>UF:<select name="uf">
+<option value="BA">BA</option>
+</select>
+
+Cidade:</b>  <select name="cidade">
+<option value="Prado">Prado</option>
+<option value="Alcobaça">Alcobaça</option>
+<option value="Caravelas">Caravelas</option>
+<option value="Mucuri">Mucuri</option>
+<option value="NovaViçosa">Nova Viçosa</option>
+</select>
+</font>
+<input type="submit" value="Pesquisar">
+</form>
+
+</div>
+
+<?php
+$Cidade = $_COOKIE['CKcidade'];
+$option = "";
+
+
+
+print "<div id='menu'>
+<div id='botao0'>
+<a href='?'>
+<img src= 'img/botoes/cidades/".$Cidade.".png'>
+</a>
+</div>";
+?>
+
+<div id = 'botao1'>
+<a href='' onClick="<?php $option = 'hotel'.$Cidade; ?>">
+<img src = 'img/botoes/hoteis.png'>
+</a>
+</div>
+
+<div id = 'botao2' >
+<a href='' onClick= "<?php $option = 'pousada'.$Cidade; ?>">
+<img src = 'img/botoes/pousada.png'>
+</a>
+</div>
+
+<div id = 'botao3'>
+<a href='' onclick="<?php $option = 'restaurante'.$Cidade; ?>">
+<img src = 'img/botoes/restaurante.png'>
+</a>
+</div>
+
+<?php
+
+print "$option";
+if($option == 'hotelPrado')
+{
+
+print "<div id='listagem'>
+<iframe src = 'PGListagem".$option.".php'>
+<img src='img/aaa.jpg'>
+ASDF</div>";
+}
+
+?>
+<body>
+
+
+</html>
